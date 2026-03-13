@@ -1,13 +1,15 @@
 import os 
 from dotenv import load_dotenv
 
+load_dotenv()
+
 #API Keys
 GROQ_API_KEY=os.getenv("GROQ_API")
-TRAVILY_API=os.getenv("TRAVELY_API")
+TRAVILY_API=os.getenv("TRAVILY_API")
 
 #LLM Provider
 LLM_PROVIDER = "groq"
-GROQ_MODEL = "llama3-8b-8192"
+GROQ_MODEL = "llama-3.3-70b-versatile"
 
 # Embedding model(hugging_face_all-MiniLM-L6-v2)
 EMBEDDING_PROVIDER = "huggingface"
