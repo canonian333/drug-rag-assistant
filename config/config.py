@@ -22,6 +22,10 @@ FAISS_INDEX_PATH = "faiss_index/"
 CHUNKING_SIZE = 500
 CHUNKING_OVERLAP = 50
 
+#Top_k and relevance threshold
+TOP_K                 = 3
+RELEVANCE_THRESHOLD   = 0.75
+
 #Travely_config(maximum 2 webpages to refer and retrieve)
 TRAVELY_MAX_RESULTS= 2
 
