@@ -48,7 +48,7 @@ def index_load()-> FAISS:
         print(f"Error in loading index: {e}")
         return None
         
-def similiarity_search(query: str,index: FAISS)-> tuple[list[Document],list[float]]:
+def similarity_search(query: str,index: FAISS)-> tuple[list[Document],list[float]]:
     try:
         if not query:
             raise ValueError("Query is empty")
@@ -60,9 +60,9 @@ def similiarity_search(query: str,index: FAISS)-> tuple[list[Document],list[floa
             print("No return from FAISS")
             return [],[]
         chunks, scores=zip(*results)
-        max_score=max(scores)
-        print(F"return from FAISS with max score: {max_score}")
-        return list(chunks),float(max_score)
+        best_distance=min(scores)
+        print(F"return from FAISS with best distance: {best_distance}")
+        return list(chunks),float(best_distance)
     except ValueError as ve:
         print(f"config error {ve}")
         return [],[]
@@ -90,7 +90,7 @@ if __name__ == "__main__":
             "Birth control side effects",
         ]
         for query in test_queries:
-            chunks,score=similiarity_search(query,index)
+            chunks,score=similarity_search(query,index)
             if not chunks:
                 print("No chunks found")
                 continue
