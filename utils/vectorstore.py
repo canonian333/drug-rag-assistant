@@ -70,7 +70,7 @@ def similarity_search(query: str,index: FAISS)-> tuple[list[Document],list[float
         print(f"Error in similarity search: {e}")
         return [],[]
 
-def get_index(csv_path:str=None)-> FAISS:
+def get_or_build_index(csv_path:str=None)-> FAISS:
     index_file = os.path.join(FAISS_INDEX_PATH, "index.faiss")
     if os.path.exists(FAISS_INDEX_PATH) and os.path.exists(index_file):
         return index_load()
@@ -82,7 +82,7 @@ def get_index(csv_path:str=None)-> FAISS:
     return create_index(chunks)
 
 if __name__ == "__main__":
-    index=get_index("data/drugsComTrain_raw.csv")
+    index=get_or_build_index("data/drugsComTrain_raw.csv")
     if index:
         test_queries=[
             "What are the side effects of Guanfacine for ADHD?",

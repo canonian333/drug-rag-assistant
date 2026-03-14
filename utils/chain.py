@@ -160,8 +160,8 @@ def run_rag_pipeline(query: str, index, mode: str = "Concise") -> dict:
         }
         
 if __name__ == "__main__":
-    from utils.vectorstore import get_index
-    index = get_index()
+    from utils.vectorstore import get_or_build_index
+    index = get_or_build_index()
     if index:
         test_cases = [
             # DB hit — Concise
