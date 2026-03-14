@@ -35,10 +35,12 @@ def load_clean_data(csv_path: str)-> pd.DataFrame:
         return None
 
 def format_content(row:pd.Series)-> str:
-    return(f"Drug Name: {row['drugName']}\n \
-    Condition: {row['condition']}\n \
-    Review: {row['review']}\n \
-    Rating: {row['rating']}")
+    return f"""
+Drug: {row['drugName']}
+Condition: {row['condition']}
+Rating: {row['rating']}
+Review: {row['review']}
+"""
 
 def build_documents(df: pd.DataFrame)-> list[Document]:
     try:

@@ -26,7 +26,7 @@ def get_llm(mode:str="concise"):
             api_key=GROQ_API_KEY,
             model=GROQ_MODEL,
             max_tokens=max_tokens,
-            temperature=0.3
+            temperature=0
         )
         print(f"LLM loaded succesfully: {GROQ_MODEL} , Mode: {mode}, Max_tokens: {max_tokens} ")
         return llm
