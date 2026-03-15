@@ -12,8 +12,8 @@ def load_clean_data(csv_path: str)-> pd.DataFrame:
         print(f"dataset loaded : {csv_path}")
         df=df.drop(columns=["date","usefulCount"],axis=1, errors="ignore")
         df=df.dropna(subset=["drugName","condition","review","rating"]) 
-        #filter out the reviews with rating less than 7
-        df=df[df["rating"] >=7] 
+        #remove duplicates
+        df=df.drop_duplicates(subset=["drugName","condition","review"])
         #clean reviews(strip,unescape,replace,duplicates)
         df["review"]=df["review"].apply(lambda x: html.unescape(x))
         df["review"]=df["review"].apply(lambda x: x.strip())
@@ -36,22 +36,23 @@ def load_clean_data(csv_path: str)-> pd.DataFrame:
 
 def format_content(row:pd.Series)-> str:
     return f"""
-Drug: {row['drugName']}
-Condition: {row['condition']}
-Rating: {row['rating']}
-Review: {row['review']}
-"""
-
-def build_documents(df: pd.DataFrame)-> list[Document]:
+        Drug: {row['drugName']}
+        Condition: {row['condition']}
+        Review: {row['review']}"""
+    
+def build_documents(df: pd.DataFrame) -> list[Document]:
     try:
-        documents=[]
-        for _,row in df.iterrows():
-            content=format_content(row)
+        documents = []
+        for _, row in df.iterrows():
+            context_header = f"Drug: {row['drugName']} | Condition: {row['condition']}"
+            review_content = row['review']
+            full_content = context_header + review_content
             metadata = {
-                "drug_name" : row["drugName"],
-                "condition" : row["condition"],
-                "rating"    : int(row["rating"])}
-            documents.append(Document(page_content=content,metadata=metadata))
+                "drug_name": row["drugName"],
+                "condition": row["condition"],
+                "rating": int(row["rating"])
+            }
+            documents.append(Document(page_content=full_content, metadata=metadata))
         print(f"Documents built: {len(documents)}")
         return documents
     except Exception as e:

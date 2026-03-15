@@ -19,8 +19,8 @@ EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
 FAISS_INDEX_PATH = "faiss_index/"
 
 #chunking_strategy
-CHUNKING_SIZE = 500
-CHUNKING_OVERLAP = 50
+CHUNKING_SIZE = 1000
+CHUNKING_OVERLAP = 200
 
 #Top_k and relevance threshold
 TOP_K                 = 10
