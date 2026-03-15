@@ -164,11 +164,11 @@ if __name__ == "__main__":
     index = get_or_build_index()
     if index:
         test_cases = [
-            # DB hit — Concise
-            ("What are the side effects of Guanfacine for ADHD?","Concise" ),
             # DB hit — Detailed
-            ("What are the side effects of NuvaRing for Birth control?", "Detailed"),
-            # Web fallback — Concise
+            ("What are the side effects of Guanfacine for ADHD?","Detailed" ),
+            # DB hit — Concise
+            ("What are the side effects of NuvaRing for Birth control?", "Concise"),
+            # Web fallback — Detailed
             ("What are the side effects of Leqembi for Alzheimer's?", "Concise" ),
         ]
 

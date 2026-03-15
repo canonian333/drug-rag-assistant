@@ -24,7 +24,7 @@ CHUNKING_OVERLAP = 200
 
 #Top_k and relevance threshold
 TOP_K                 = 10
-RELEVANCE_THRESHOLD   = 0.70
+RELEVANCE_THRESHOLD   = 0.65
 #Travely_config(maximum 2 webpages to refer and retrieve)
 TRAVELY_MAX_RESULTS= 2
 
