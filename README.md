@@ -59,7 +59,7 @@ Open [http://localhost:8501](http://localhost:8501) in your browser.
 2. **Build Index**: Creates a FAISS index with sentence embeddings
 3. **User Query**: User asks a question (e.g., "What are the side effects of NuvaRing?")
 4. **Smart Retrieval**:
-   - Checks FAISS index for similar reviews (threshold: 0.7)
+   - Checks FAISS index for similar reviews (threshold: 0.65)
    - If insufficient context, performs Tavily web search
    - Combines DB + web results
 5. **Generate Answer**:
